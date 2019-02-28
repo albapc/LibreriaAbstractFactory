@@ -7,30 +7,26 @@ package libreria;
 abstract class IO implements MetodosComunes {
 
     /**
-     * Variable utilizada para seleccionar que el programa se ejecute en la
-     * consola
+     * Selecciona cómo se va a mostrar el mensaje
      */
-    public static final int CONSOLA = 0;
+    enum Tipo {
+        CONSOLA,
+        VENTANA
+    }
 
     /**
-     * Variable utilizada para seleccionar que el programa se ejecute en una
-     * ventana emergente
-     */
-    public static final int VENTANA = 1;
-
-    /**
+     * Crea un objeto de tipo IO segun el tipo (enum) que indiquemos
      *
-     * @param tipo Parametro donde introducimos una de las dos variables
-     * anteriores, para que salga en consola o ventana
-     * @return <code> numeroAImprimir</code>
+     * @param tipo CONSOLA, crea objeto de tipo ConsDialogo. VENTANA, crea
+     * objeto de tipoWinDialogo
+     * @return objeto IOCreado
      */
-    public static IO introducir(int tipo) {
+    public static IO introducir(Tipo tipo) {
         IO IOCreado;
         switch (tipo) {
             case CONSOLA:
                 IOCreado = new ConsDialogo();
                 break;
-
             case VENTANA:
                 IOCreado = new WinDialogo();
                 break;
@@ -41,30 +37,11 @@ abstract class IO implements MetodosComunes {
     }
 
     /**
+     * Las subclases sobrescribirían este método.
      *
-     * @param miNumero Parametro de tipo int en el que introducimos un valor o
-     * variable, que se mostrara en consola
-     */
-    public static void mostrar(int msg) {
-        System.out.println("Número int: " + msg);
-    }
-
-    /**
-     *
-     * @param miNumero Parametro de tipo String en el que introducimos un valor
-     * o variable, que se mostrara en consola
+     * @param msg mensaje a mostrar
      */
     @Override
     public void mostrar(String msg) {
-        System.out.println("Mensaje String: " + msg);
-    }
-
-    /**
-     *
-     * @param miNumero Parametro de tipo float en el que introducimos un valor o
-     * variable que se mostrara en consola
-     */
-    public static void mostrar(float msg) {
-        System.out.println("Número float: " + msg);
     }
 }
